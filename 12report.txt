@@ -1,0 +1,14 @@
+Thu Jan 18 18:14:14 PST 2024
+user: jed
+home: /Users/jed
+shell: /bin/zsh
+pwd: /Users/jed/Downloads/Classes/MCB185/Code/mcb185_homework
+path: /opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/ncbi/blast/bin:/opt/X11/bin
+Darwin campus-062-210.ucdavis.edu 22.3.0 Darwin Kernel Version 22.3.0: Thu Jan  5 20:49:43 PST 2023; root:xnu-8792.81.2~2/RELEASE_ARM64_T8103 arm64
+Python 3.11.5
+/Users/jed/Downloads/Classes/MCB185/Code
+/Users/jed/Downloads/Classes/MCB185/Code/mcb185_homework
+/Users/jed/Downloads/Classes/MCB185/Code/mcb185_homework/.git
+/Users/jed/Downloads/Classes/MCB185/Code/MCB185
+/Users/jed/Downloads/Classes/MCB185/Code/MCB185/.git
+/Users/jed/Downloads/Classes/MCB185/Code/MCB185/data
