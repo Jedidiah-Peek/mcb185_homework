@@ -4,7 +4,9 @@ import sys
 import math
 
 def quad(a, b, c):
-	if a == 0:
+	if type(a) ==  str or type(b) == str or type(c) == str:
+		return 'Error: not numbers'
+	elif a == 0:
 		return 'Not quadradic equation'
 		
 	elif b**2 < 4*a*c:
@@ -17,7 +19,8 @@ def quad(a, b, c):
 		return (-b + math.sqrt(b**2 - 4*a*c)) / (2*a), (-b - math.sqrt(b**2 - 4*a*c)) / (2*a)
 		
 		
-print(quad(2, 2, 3))
+print(quad(2.3, 2, 3))
 print(quad(0, 2, 3))
 print(quad(3, -7, 3))
 print(quad(2, 4, 2))
+print(quad('a', 2, 3.5))

@@ -4,7 +4,7 @@ import math
 
 
 def entropy(a, c, g, t):
-	if type(a) != type(1) or type(c) != type(1) or type(g) != type(1) or type(t) != type(1) :
+	if type(a) != int or type(c) != int or type(g) != int or type(t) != int:
 		return 'Error: inputs not positive integers'
 	
 	elif a < 0 or c < 0 or g < 0 or t < 0:

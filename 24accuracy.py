@@ -1,7 +1,7 @@
 # 24accuracy.py by Jedidiah_Peek
 
 def accuracy(tp, fp, tn, fn):
-	if type(tp) != type(1) or type(fp) != type(1) or type(tn) != type(1) or type(fn) != type(1) :
+	if type(tp) != int or type(fp) != int or type(tn) != int or type(fn) != int:
 		return 'Error: inputs not positive integers'
 	
 	elif tp < 0 or fp < 0 or tn < 0 or fn < 0:
