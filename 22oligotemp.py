@@ -8,7 +8,7 @@ def temp_melt(a, c, g, t):
 		return 'Error: inputs not positive integers'
 	
 	nt_count = a + c + g + t
-	if a < 0 or c < 0 or g < 0 or t < 0:
+	elif a < 0 or c < 0 or g < 0 or t < 0:
 		return 'Error: negative nucliotide count'
 		
 	elif nt_count == 0:
