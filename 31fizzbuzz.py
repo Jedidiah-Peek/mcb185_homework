@@ -4,5 +4,5 @@ for a in range(1, 101):
 		output = 'Fizz'
 	if a % 5 == 0: 
 		if type(output) == int: output = 'Buzz'
-		else:                   output = output +'Buzz'
+		else:                   output = 'FizzBuzz'
 	print(output)
