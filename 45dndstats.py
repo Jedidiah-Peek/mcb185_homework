@@ -5,14 +5,15 @@ method_1 = 0
 method_2 = 0
 method_3 = 0
 method_4 = 0
+d2 = random.randint(1, 6)
 
 for a in range(100000):
-	lowest = random.randint(1, 6)
+	lowest = d2
 	for b in range(3):
-		method_1 += random.randint(1, 6)
 		method_2 += random.randint(2, 6)
 		d1 = random.randint(1, 6)
 		d2 = random.randint(1, 6)
+		method_1 += d1
 		if d1 > d2: method_3 += d1
 		else:       method_3 += d2
 		if d1 >= lowest:
