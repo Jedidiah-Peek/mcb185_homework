@@ -22,4 +22,4 @@ for a in range(100000):
 			f += 1
 			if f >= 3: die += 1
 
-print(f'died = {die / 1000:.2f}%, stablized = {stable / 1000:.2f}%, and revived = {revived / 1000:.2f}%')
+print(f'died = {die / 1000:.2f}%, stabilized = {stable / 1000:.2f}%, and revived = {revived / 1000:.2f}%')
