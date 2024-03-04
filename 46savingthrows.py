@@ -14,6 +14,5 @@ def probablity(DC):
 	print(f'DC\t{nor / 1000:.2f}%\t\t{adv / 1000:.2f}%\t\t{dis / 1000:.2f}%')
 
 print('\tnormal \t\tadvantage \tdisadvantage')
-probablity(5)
-probablity(10)
-probablity(15)
+for a in range(5, 20, 5):
+	probablity(a)
