@@ -9,14 +9,12 @@ tot = 0
 for a in range(trials):
 	same = False
 	birthdays = []
+	for b in range(days):
+		birthdays.append(0)
 	for b in range(people):
-		birthdays.append(random.randint(1, days))
+		birthdays[random.randint(0, days - 1)] += 1
 	birthdays.sort()
-	for b in range(people):
-		if birthdays[b - 1] == birthdays[b]:
-			same = True
-	if same == True:
-		tot += 1
-			
+	if birthdays[-1] > 1:
+		tot +=1
 
 print(f'{tot * 100 / trials:.2f}%')
