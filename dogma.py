@@ -13,55 +13,32 @@ def revcomp(dna):
 	return ''.join(rc)
 	
 	
-def translate(dna):
-	aas = []
-	for a in range(0, len(dna), 3):
-		nt = dna[a:a+3]
-		if nt == 'ATG':	
-			aas.append('M')
-		elif nt == 'CGC' or nt == 'CGT' or nt == 'CGA' or nt == 'CGG' or nt == 'AGA' or nt == 'AGG':
-			aas.append('R')
-		elif nt == 'CAT' or nt == 'CAC':
-			aas.append('H')
-		elif nt == 'AAA' or nt == 'AAG':
-			aas.append('K')
-		elif nt == 'GAT' or nt == 'GAC':
-			aas.append('D')
-		elif nt == 'GAA' or nt == 'GAG':
-			aas.append('E')
-		elif nt == 'TCC' or nt == 'TCT' or nt == 'TCA' or nt == 'TCG' or nt == 'AGT' or nt == 'AGC':
-			aas.append('S')
-		elif nt == 'ACC' or nt == 'ACT' or nt == 'ACA' or nt == 'ACG':
-			aas.append('T')
-		elif nt == 'AAT' or nt == 'AAC':
-			aas.append('N')
-		elif nt == 'CAA' or nt == 'CAG':
-			aas.append('Q')
-		elif nt == 'TGT' or nt == 'TGC':
-			aas.append('C')
-		elif nt == 'GGG' or nt == 'GGT' or nt == 'GGA' or nt == 'GGC':
-			aas.append('G')
-		elif nt == 'CCC' or nt == 'CCT' or nt == 'CCA' or nt == 'CCG':
-			aas.append('P')
-		elif nt == 'GCC' or nt == 'GCG' or nt == 'GCA' or nt == 'GCT':
-			aas.append('A')
-		elif nt == 'GTT' or nt == 'GTG' or nt == 'GTA' or nt == 'GTC':
-			aas.append('V')
-		elif nt == 'ATT' or nt == 'ATC' or nt == 'ATA':
-			aas.append('I')
-		elif nt == 'TTA' or nt == 'TTG' or nt == 'CTT' or nt == 'CTC' or nt == 'CTG' or nt == 'CTA':
-			aas.append('L')
-		elif nt == 'TTT' or nt == 'TTC':
-			aas.append('F')
-		elif nt == 'TAT' or nt == 'TAC':
-			aas.append('Y')
-		elif nt == 'TGG':
-			aas.append('W')
-		elif nt == 'TAA' or nt == 'TAG' or nt == 'TGA':
-			aas.append('*')
-		else:
-			aas.append('X')
-	return ''.join(aas)
+gcode = {
+	'AAA' : 'K',	'AAC' : 'N',	'AAG' : 'K',	'AAT' : 'N',
+	'ACA' : 'T',	'ACC' : 'T',	'ACG' : 'T',	'ACT' : 'T',
+	'AGA' : 'R',	'AGC' : 'S',	'AGG' : 'R',	'AGT' : 'S',
+	'ATA' : 'I',	'ATC' : 'I',	'ATG' : 'M',	'ATT' : 'I',
+	'CAA' : 'Q',	'CAC' : 'H',	'CAG' : 'Q',	'CAT' : 'H',
+	'CCA' : 'P',	'CCC' : 'P',	'CCG' : 'P',	'CCT' : 'P',
+	'CGA' : 'R',	'CGC' : 'R',	'CGG' : 'R',	'CGT' : 'R',
+	'CTA' : 'L',	'CTC' : 'L',	'CTG' : 'L',	'CTT' : 'L',
+	'GAA' : 'E',	'GAC' : 'D',	'GAG' : 'E',	'GAT' : 'D',
+	'GCA' : 'A',	'GCC' : 'A',	'GCG' : 'A',	'GCT' : 'A',
+	'GGA' : 'G',	'GGC' : 'G',	'GGG' : 'G',	'GGT' : 'G',
+	'GTA' : 'V',	'GTC' : 'V',	'GTG' : 'V',	'GTT' : 'V',
+	'TAA' : '*',	'TAC' : 'Y',	'TAG' : '*',	'TAT' : 'Y',
+	'TCA' : 'S',	'TCC' : 'S',	'TCG' : 'S',	'TCT' : 'S',
+	'TGA' : '*',	'TGC' : 'C',	'TGG' : 'W',	'TGT' : 'C',
+	'TTA' : 'L',	'TTC' : 'F',	'TTG' : 'L',	'TTT' : 'F',
+}
+def translate(seq):
+	pro = []
+	for i in range(0, len(seq), 3):
+		codon = seq[i:i+3]
+		if codon in gcode: aa = gcode[codon]
+		else:              aa = 'X'
+		pro.append(aa)
+	return ''.join(pro)
 	
 	
 def gc_comp(seq):
@@ -73,3 +50,17 @@ def gc_skew(seq):
 	g = seq.count('G')
 	if c + g == 0: return 0
 	return (g - c) / (g + c)
+
+
+def temp_melt(seq):
+	nt_count = len(seq)
+	a = seq.count('A')
+	c = seq.count('C')
+	g = seq.count('G')
+	t = seq.count('T')
+	if nt_count <= 13:
+		return (a + t) * 2 + (g + c) * 4
+		
+	else:
+		return 64.9 + 41 * (g + c - 16.4) /nt_count
+		
