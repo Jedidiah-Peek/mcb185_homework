@@ -5,7 +5,7 @@ import math
 w = int(sys.argv[2])
 e = float(sys.argv[3])
 for defline, seq in mcb185.read_fasta(sys.argv[1]):
-	print(defline)
+	print(f'>{defline}')
 	output = list(seq)
 	for a in range(len(seq) - w + 1):
 		s = seq[a:w + a]
@@ -22,4 +22,10 @@ for defline, seq in mcb185.read_fasta(sys.argv[1]):
 		if ent < e:
 			for b in range(w):
 				output[a + b] = 'N'
-	print(''.join(output))
+	num = 0
+	for a in output:
+		if num == 60:
+			print()
+			num = 0
+		print(a, end='')
+		num += 1			
