@@ -4,7 +4,7 @@ import dogma
 import mcb185
 
 
-with gzip.open(sys.argv[1], 'rt') as data:
+with gzip.open(sys.argv[2], 'rt') as data:
 	genes_f = []
 	genes_r = []
 	for line in data:
@@ -16,7 +16,7 @@ with gzip.open(sys.argv[1], 'rt') as data:
 				genes_r.append([stuff[0], int(stuff[3]) - 1, int(stuff[4]) - 1])
 
 chromosomes = {}
-for defline, seq in mcb185.read_fasta(sys.argv[2]):
+for defline, seq in mcb185.read_fasta(sys.argv[1]):
 	chromosomes[defline.split()[0]] = seq
 
 don = []	
