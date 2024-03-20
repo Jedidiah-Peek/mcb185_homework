@@ -10,9 +10,7 @@ def prot(aa, num):
 				print(f'>pro-{num}')
 				print(aa[:aa.find('*') + 1])
 				num += 1
-				aa = aa[1:]
-			else:
-				aa = aa[aa.find('*') + 1:]
+			aa = aa[aa.find('*') + 1:]
 	return num
 
 
