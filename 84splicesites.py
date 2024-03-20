@@ -44,24 +44,6 @@ for a in genes_r:
 	acc_seq = intron[-7:]
 	for num, nt in enumerate(acc_seq):
 		acc[num][nt] += 1 
-		
-print('AC OUTPUT1')
-print('XX')
-print('ID ACC')
-print('XX')
-print('DE splice acceptor')
-print(f'PO\tA\tC\tG\tT')
-for a in range(len(acc)):
-	print(f'{a+1}\t{acc[a]["A"]}\t{acc[a]["C"]}\t{acc[a]["G"]}\t{acc[a]["T"]}')
-print('XX')
-print('//')
-print('AC OUTPUT2')
-print('XX')
-print('ID DON')
-print('XX')
-print('DE splice donnor')
-print(f'PO\tA\tC\tG\tT')
-for a in range(len(don)):
-	print(f'{a+1}\t{don[a]["A"]}\t{don[a]["C"]}\t{don[a]["G"]}\t{don[a]["T"]}')
-print('XX')
-print('//')
+
+dogma.print_pwm('OUTPUT1', 'ACC', 'splice acceptor', acc)
+dogma.print_pwm('OUTPUT2', 'DON', 'splice donnor', don)		

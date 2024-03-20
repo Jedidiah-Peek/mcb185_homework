@@ -16,21 +16,6 @@ def get_seq(file):
 				genome.append(word)
 	return ''.join(genome)
 	
-def print_pwm(name, ID, de, pwm):
-	print('AC', name)
-	print('XX')
-	print('ID', ID)
-	print('XX')
-	print('DE', de)
-	print('PO\tA\tC\tG\tT')
-	for i, count in enumerate(pwm):
-		a_count = count['A']
-		c_count = count['C']
-		g_count = count['G']
-		t_count = count['T']
-		print(f'{i+1:<8}{a_count:<8}{c_count:<8}{g_count:<8}{t_count:<8}')
-	print('XX')
-	print('//')
 			
 genome_seq = get_seq(sys.argv[1])
 
@@ -56,4 +41,4 @@ with gzip.open(sys.argv[1], 'rt') as lines:
 		for i, nt in enumerate(seq):
 			kozaks[i][nt] += 1
 
-print_pwm('IMTSU001', 'ECKOZ', 'E. coli Kozak sequence', kozaks)
+dogma.print_pwm('IMTSU001', 'ECKOZ', 'E. coli Kozak sequence', kozaks)

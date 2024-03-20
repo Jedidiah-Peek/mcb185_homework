@@ -40,6 +40,23 @@ def translate(seq):
 		pro.append(aa)
 	return ''.join(pro)
 	
+
+def print_pwm(name, ID, de, pwm):
+	print('AC', name)
+	print('XX')
+	print('ID', ID)
+	print('XX')
+	print('DE', de)
+	print('PO\tA\tC\tG\tT')
+	for i, count in enumerate(pwm):
+		a_count = count['A']
+		c_count = count['C']
+		g_count = count['G']
+		t_count = count['T']
+		print(f'{i+1:<8}{a_count:<8}{c_count:<8}{g_count:<8}{t_count:<8}')
+	print('XX')
+	print('//')
+	
 	
 def gc_comp(seq):
 	return (seq.count('C') + seq.count('G')) / len(seq)
@@ -63,4 +80,30 @@ def temp_melt(seq):
 		
 	else:
 		return 64.9 + 41 * (g + c - 16.4) /nt_count
+		
+
+def hydropathy(seqs):
+	hydro = 0
+	for aa in seqs:
+		if aa == 'A':   hydro += 1.80
+		elif aa == 'C': hydro += 2.50
+		elif aa == 'D': hydro += -3.50
+		elif aa == 'E': hydro += -3.50
+		elif aa == 'F': hydro += 2.80
+		elif aa == 'G': hydro += -0.40
+		elif aa == 'H': hydro += -3.20
+		elif aa == 'I': hydro += 4.50
+		elif aa == 'K': hydro += -3.90
+		elif aa == 'L': hydro += 3.80
+		elif aa == 'M': hydro += 1.90
+		elif aa == 'N': hydro += -3.50
+		elif aa == 'P': hydro += -1.60
+		elif aa == 'Q': hydro += -3.50
+		elif aa == 'R': hydro += -4.50
+		elif aa == 'S': hydro += -0.80
+		elif aa == 'T': hydro += -0.70
+		elif aa == 'V': hydro += 4.20
+		elif aa == 'W': hydro += -0.90
+		elif aa == 'Y': hydro += -1.30
+	return hydro / len(seqs)
 		
