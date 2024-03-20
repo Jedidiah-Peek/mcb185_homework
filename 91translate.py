@@ -12,12 +12,14 @@ arg = parser.parse_args()
 
 
 for defline, seq in mcb185.read_fasta(arg.file):
-	trans = dogma.translate(seq)
-	if len(trans) >= arg.min:
-		print(defline)
-		print(trans)
+	trans = dogma.translate(seq[seq.find('ATG'):])
+	if '*' in trans and trans.find('*') + 1 >= arg.min:
+		print(f'>{defline}')
+		print(trans[:trans.find('*')])
 	if arg.anti is True:
-		optrans = dogma.translate(dogma.revcomp(seq))
-		if len(optrans) >= arg.min:
-			print(defline, 'anti')
-			print(trans)
+		op = dogma.revcomp(seq)
+		if 'ATG' in op:
+			optrans = dogma.translate(op[op.find['ATG']:])
+			if '*' in optrans and optrans.find('*') + 1 >= arg.min:
+				print(f'>{defline}')
+				print(optrans[:optrans.find('*')])

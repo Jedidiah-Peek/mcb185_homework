@@ -16,7 +16,7 @@ arg = parser.parse_args()
 w = int(arg.size)
 e = float(arg.entropy)
 for defline, seq in mcb185.read_fasta(arg.file):
-	print(defline)
+	print(f'>{defline}')
 	output = list(seq)
 	for a in range(len(seq) - w + 1):
 		s = seq[a:w + a]
@@ -41,4 +41,10 @@ for defline, seq in mcb185.read_fasta(arg.file):
 					elif seq[a + b] == 'G': output[a + b] = 'g'
 					elif seq[a + b] == 'T': output[a + b] = 't'
 					elif seq[a + b] == 'N': output[a + b] = 'n'
-	print(''.join(output))
+	num = 0
+	for a in output:
+		if num == 60:
+			print()
+			num = 0
+		print(a, end='')
+		num += 1			
