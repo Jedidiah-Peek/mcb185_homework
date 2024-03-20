@@ -6,26 +6,30 @@ import dogma
 with gzip.open(sys.argv[1], 'rt') as data:
 	seq = []
 	genes = []
+	is_seq = False
 	for line in data:
-		if ' gene' in line and '..' in line:
-			genes.append(line.split()[1])
-		elif '1 ' in line and '/' not in line and '(' not in line:
-			for a in line.split()[1:]:
-				seq.append(a)
+		if is_seq is True:
+			seq.append(''.join(line.split()[1:]))
+		if is_seq is False:
+			data = line.split()
+			if data[0] == 'gene':
+				genes.append(data[1])
+			elif data[0] == 'ORIGIN':
+				is_seq = True
 	seq = ''.join(seq)
 	output = []
 	for a in genes:
 		if 'complement' in a:
-			points = [int(a[11:-1].split('..')[0]), int(a[11:-1].split('..')[1])]
-			string = dogma.revcomp(seq[points[0]:points[1]])
+			start = int(a[11:-1].split('..')[1])
+			string = dogma.revcomp(seq[start-4:start+10])
 			for b in range(len(string)):
 				if b == len(output):
 					output.append({'a': 0, 'c': 0, 'g': 0, 't': 0})
 				if string[b] != 'N':
 					output[b][string[b]] += 1
 		else:
-			points = [int(a.split('..')[0]), int(a.split('..')[1])]
-			string = seq[points[0]:points[1]]
+			start = int(a.split('..')[0])
+			string = seq[start-10:start+4]
 			for b in range(len(string)):
 				if b == len(output):
 					output.append({'a': 0, 'c': 0, 'g': 0, 't': 0})
@@ -37,6 +41,6 @@ with gzip.open(sys.argv[1], 'rt') as data:
 	print('XX')
 	print('DE nt frequency')
 	print(f'PO\tA\tC\tG\tT')
-	for a in range(len(output)):
-		print(f'{a+1}\t{output[a]["a"]}\t{output[a]["c"]}\t{output[a]["g"]}\t{output[a]["t"]}')
+	for a in range(14):
+		print(f'{a+1}\t{output[a]["a"]:<5}\t{output[a]["c"]:<5}\t{output[a]["g"]:<5}\t{output[a]["t"]:<5}')
 	print('XX')
