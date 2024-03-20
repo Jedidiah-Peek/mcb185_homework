@@ -21,7 +21,7 @@ with gzip.open(sys.argv[1], 'rt') as data:
 	for a in genes:
 		if 'complement' in a:
 			start = int(a[11:-1].split('..')[1])
-			string = dogma.revcomp(seq[start-4:start+10])
+			string = dogma.revcomp(seq[start-5:start+9])
 			for b in range(len(string)):
 				if b == len(output):
 					output.append({'a': 0, 'c': 0, 'g': 0, 't': 0})
@@ -39,7 +39,7 @@ with gzip.open(sys.argv[1], 'rt') as data:
 	print('XX')
 	print('ID ECKOZ')
 	print('XX')
-	print('DE nt frequency')
+	print('DE E. coli Kozak sequence')
 	print(f'PO\tA\tC\tG\tT')
 	for a in range(14):
 		print(f'{a+1}\t{output[a]["a"]:<5}\t{output[a]["c"]:<5}\t{output[a]["g"]:<5}\t{output[a]["t"]:<5}')
