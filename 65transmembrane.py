@@ -10,6 +10,6 @@ def test(nt, size, cutoff):
 	return False
 
 for defline, seq in mcb185.read_fasta(sys.argv[1]):
-	if test(seq[:30], 8, 2.5) is True and test(seq[30:], 11, 2) is True:
-		print(f'>{defline}')
+	if test(seq[:30], 8, 2.5) and test(seq[30:], 11, 2):
+		print(defline)
 	
