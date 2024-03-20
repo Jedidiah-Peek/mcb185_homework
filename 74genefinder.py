@@ -34,6 +34,7 @@ def cds_r(nt, size, num):
 							num += 1
 						last_stop = end
 						break
+	return num
 						
 
 for defline, seq in mcb185.read_fasta(sys.argv[1]):
