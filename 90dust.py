@@ -47,4 +47,5 @@ for defline, seq in mcb185.read_fasta(arg.file):
 			print()
 			num = 0
 		print(a, end='')
-		num += 1			
+		num += 1
+	print()			

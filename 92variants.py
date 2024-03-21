@@ -12,13 +12,15 @@ with gzip.open(arg.vcf, 'rt') as dif:
 	changes = []
 	for a in dif:
 		info = a.split()
-		changes.append({'chr' : info[0], 'place' : info[1], 'type' : []})
+		changes.append({'chr' : info[0], 'place' : int(info[1]), 'type' : []})
 		
 with gzip.open(arg.gff, 'rt') as locate:
 	for a in locate:
 		data = a.split()
+		data[3] = int(data[3])
+		data[4] = int(data[4])
 		for point in changes:
-			if point['chr'] == data[0] and int(point['place']) > int(data[3]) and int(point['place']) < int(data[4]):
+			if point['chr'] == data[0] and point['place'] > data[3] and point['place'] < data[4]:
 				if data[2] not in point['type']: point['type'].append(data[2])
 				
 for a in changes:

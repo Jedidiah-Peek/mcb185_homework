@@ -16,10 +16,10 @@ for defline, seq in mcb185.read_fasta(arg.file):
 	if '*' in trans and trans.find('*') + 1 >= arg.min:
 		print(f'>{defline}')
 		print(trans[:trans.find('*')])
-	if arg.anti is True:
+	if arg.anti:
 		op = dogma.revcomp(seq)
 		if 'ATG' in op:
-			optrans = dogma.translate(op[op.find['ATG']:])
+			optrans = dogma.translate(op[op.find('ATG'):])
 			if '*' in optrans and optrans.find('*') + 1 >= arg.min:
-				print(f'>{defline}')
+				print(f'>{defline} anti')
 				print(optrans[:optrans.find('*')])
