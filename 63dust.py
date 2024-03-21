@@ -3,7 +3,7 @@ import mcb185
 import math
 
 w = int(sys.argv[2])
-e = float(sys.argv[3])
+entropy_min = float(sys.argv[3])
 for defline, seq in mcb185.read_fasta(sys.argv[1]):
 	print(f'>{defline}')
 	output = list(seq)
@@ -18,7 +18,7 @@ for defline, seq in mcb185.read_fasta(sys.argv[1]):
 			ent -= s.count('G') / w * math.log2(s.count('G') / w)
 		if s.count('T') > 0:
 			ent -= s.count('T') / w * math.log2(s.count('T') / w)
-		if ent < e:
+		if ent < entropy_min:
 			for b in range(w):
 				output[a + b] = 'N'
 	num = 0
